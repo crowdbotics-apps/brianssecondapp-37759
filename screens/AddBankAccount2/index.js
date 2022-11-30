@@ -1,13 +1,6 @@
+import { CheckBox } from "react-native-elements";
 import React, { useEffect, useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  TextInput,
-  Pressable,
-  ScrollView
-} from "react-native";
+import { Text, View, StyleSheet, Image, TextInput, Pressable, ScrollView } from "react-native";
 
 const AddBankAccount = () => {
   const [user, setUser] = useState({});
@@ -21,58 +14,27 @@ const AddBankAccount = () => {
       image: require("./assets/profilePicture.png")
     });
   }, []);
-  return (
-    <View style={styles.container}>
+  return <View style={styles.container}>
       <ScrollView>
         <View style={styles.profileContainer}>
           <Image source={user.image} style={styles.profilePicture} />
           <Text style={styles.profileName}>{user.name}</Text>
           <Text style={styles.profilemail}>{user.email}</Text>
-        </View>
+        <CheckBox title="Checkbox Title"></CheckBox></View>
         <View style={styles.inputs}>
           <View style={styles.inputContainer}>
             <Text style={styles.inputText}>Bank account number</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setAccountNumber(text)}
-              value={accountNumber}
-              placeholder="Enter bank account number"
-              placeholderTextColor="#9B9B9B"
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
-            <Image
-              source={require("./assets/lockIcon.png")}
-              style={styles.lockIcon}
-            />
+            <TextInput style={styles.input} onChangeText={text => setAccountNumber(text)} value={accountNumber} placeholder="Enter bank account number" placeholderTextColor="#9B9B9B" autoCapitalize="none" autoCorrect={false} />
+            <Image source={require("./assets/lockIcon.png")} style={styles.lockIcon} />
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.inputText}>Confirm Bank account number</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setConfirmAccountNumber(text)}
-              value={confirmAccountNumber}
-              placeholder="Confirm bank account number"
-              placeholderTextColor="#9B9B9B"
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
-            <Image
-              source={require("./assets/lockIcon.png")}
-              style={styles.lockIcon}
-            />
+            <TextInput style={styles.input} onChangeText={text => setConfirmAccountNumber(text)} value={confirmAccountNumber} placeholder="Confirm bank account number" placeholderTextColor="#9B9B9B" autoCapitalize="none" autoCorrect={false} />
+            <Image source={require("./assets/lockIcon.png")} style={styles.lockIcon} />
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.inputText}>Bank routing number</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={(text) => setRoutingNumber(text)}
-              value={routingNumber}
-              placeholder="Enter bank routing number"
-              placeholderTextColor="#9B9B9B"
-              autoCapitalize="none"
-              autoCorrect={false}
-            />
+            <TextInput style={styles.input} onChangeText={text => setRoutingNumber(text)} value={routingNumber} placeholder="Enter bank routing number" placeholderTextColor="#9B9B9B" autoCapitalize="none" autoCorrect={false} />
           </View>
         </View>
         <View style={styles.bottomTextContainer}>
@@ -83,20 +45,10 @@ const AddBankAccount = () => {
         </View>
         <Button buttonText={"Save"} />
       </ScrollView>
-      <Footer
-        titles={["Home", "Task", "Availability", "Account", "My Business"]}
-        images={[
-          require("./assets/homeIcon.png"),
-          require("./assets/listIcon.png"),
-          require("./assets/availabilityIcon.png"),
-          require("./assets/accountIconActive.png"),
-          require("./assets/businessIcon.png")
-        ]}
-        active={3}
-      />
-    </View>
-  );
+      <Footer titles={["Home", "Task", "Availability", "Account", "My Business"]} images={[require("./assets/homeIcon.png"), require("./assets/listIcon.png"), require("./assets/availabilityIcon.png"), require("./assets/accountIconActive.png"), require("./assets/businessIcon.png")]} active={3} />
+    </View>;
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -162,30 +114,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 20
   }
 });
-
 export default AddBankAccount;
 
-const Footer = (props) => {
-  return (
-    <View style={footerStyles.footer}>
-      {props.titles.map((title, index) => (
-        <View style={footerStyles.footerItem} key={index}>
-          <Image
-            style={footerStyles.footerImage}
-            source={props.images[index]}
-          />
-          <Text
-            style={[
-              footerStyles.footerItemText,
-              index === props.active ? footerStyles.active : null
-            ]}
-          >
+const Footer = props => {
+  return <View style={footerStyles.footer}>
+      {props.titles.map((title, index) => <View style={footerStyles.footerItem} key={index}>
+          <Image style={footerStyles.footerImage} source={props.images[index]} />
+          <Text style={[footerStyles.footerItemText, index === props.active ? footerStyles.active : null]}>
             {title}
           </Text>
-        </View>
-      ))}
-    </View>
-  );
+        </View>)}
+    </View>;
 };
 
 const footerStyles = StyleSheet.create({
@@ -222,7 +161,7 @@ const footerStyles = StyleSheet.create({
   }
 });
 
-const Button = (params) => {
+const Button = params => {
   const btnStyle = {
     backgroundColor: params.outline ? "#fff" : "#000",
     borderColor: params.outline ? "#000" : "#fff",
@@ -231,14 +170,12 @@ const Button = (params) => {
   const btnText = {
     color: params.outline ? "#000" : "#fff"
   };
-  return (
-    <View style={buttonStyles.btnContainer}>
+  return <View style={buttonStyles.btnContainer}>
       <Pressable style={[buttonStyles.btn, btnStyle]} onPress={params.onPress}>
         <Text style={[buttonStyles.btnText, btnText]}>{params.buttonText}</Text>
         <View style={styles.childrenContainer}>{params.children}</View>
       </Pressable>
-    </View>
-  );
+    </View>;
 };
 
 const buttonStyles = StyleSheet.create({
